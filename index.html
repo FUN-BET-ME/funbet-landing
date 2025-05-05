@@ -1,39 +1,43 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fun-Bet</title>
+  <title>Welcome Bonus</title>
 </head>
 <body>
   <h1>Sign up for Welcome Bonus</h1>
-  <form id="subscribeForm">
-    <input type="email" id="email" placeholder="Enter your email" required />
+  <form id="bonusForm">
+    <input type="email" id="email" name="email" placeholder="your@email.com" required />
     <button type="submit">Get Bonus</button>
   </form>
-  <p id="responseMessage"></p>
+  <p id="response"></p>
 
   <script>
-    document.getElementById("subscribeForm").addEventListener("submit", async function (e) {
+    const form = document.getElementById('bonusForm');
+    const responseMsg = document.getElementById('response');
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const email = document.getElementById("email").value;
-      const responseMessage = document.getElementById("responseMessage");
+      const email = document.getElementById('email').value;
 
       try {
-        const response = await fetch("https://fun-bet.me/api/email", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
+        const res = await fetch('/api/email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
           body: JSON.stringify({ email }),
         });
 
-        if (response.ok) {
-          responseMessage.textContent = "Thanks for signing up! Please check your inbox.";
+        const data = await res.json();
+        if (res.ok) {
+          responseMsg.textContent = '🎉 ' + data.message;
         } else {
-          responseMessage.textContent = "Something went wrong. Please try again.";
+          responseMsg.textContent = '❌ ' + data.message;
         }
       } catch (error) {
-        responseMessage.textContent = "Error: " + error.message;
+        responseMsg.textContent = 'Error: Failed to reach server.';
       }
     });
   </script>
