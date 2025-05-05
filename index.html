@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -108,17 +109,19 @@
             font-size: 0.7em;
             color: #777;
         }
+
+        /* Mobile Responsive Fix */
         @media (max-width: 600px) {
             .logo { width: 80%; max-width: 350px; }
             h1 { font-size: 1.6em; }
             p.tagline { font-size: 0.95em; }
             h2 { font-size: 1.1em; }
-            input, button, .contact-btn {
-                font-size: 0.75em;
-                padding: 8px;
+            input, button, .contact-btn { 
+                font-size: 0.75em; 
+                padding: 8px; 
             }
-            .about {
-                font-size: 0.75em;
+            .about { 
+                font-size: 0.75em; 
                 line-height: 1.4;
                 padding: 0 10px;
             }
@@ -131,9 +134,9 @@
         <h1>FUN-BET.ME</h1>
         <p class="tagline">Your Skill. Your Game. Real Rewards, Real Fun!!!</p>
         <h2>Launching Soon!</h2>
-        <form action="http://localhost:3000/subscribe" method="POST">
-            <input type="email" name="email" placeholder="Enter your email" required>
-            <button type="submit">Get Free Bonus!</button>
+        <form>
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Notify Me</button>
         </form>
         <a href="mailto:info@fun-bet.me" class="contact-btn">Contact Us</a>
         <div class="divider"></div>
