@@ -4,16 +4,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fun Bet</title>
+  <title>FUN-BET.ME</title>
 </head>
 <body>
-  <h1>Welcome to Fun Bet!</h1>
-  <button id="getBonusBtn">Get Bonus</button>
+  <h1>Welcome to FUN-BET!</h1>
+  <form id="bonusForm">
+    <input type="email" id="emailInput" placeholder="Enter your email" required />
+    <button type="submit">Get Bonus</button>
+  </form>
 
   <script>
-    document.getElementById('getBonusBtn').addEventListener('click', function() {
-      alert('You just got your bonus!');
-      // Optionally redirect: window.location.href = "/bonus.html";
+    document.getElementById('bonusForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const email = document.getElementById('emailInput').value;
+
+      const res = await fetch('/api/email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+
+      if (res.ok) {
+        alert('🎉 Welcome email sent!');
+      } else {
+        alert('Something went wrong.');
+      }
     });
   </script>
 </body>
