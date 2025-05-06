@@ -134,10 +134,12 @@
         <h1>FUN-BET.ME</h1>
         <p class="tagline">Your Skill. Your Game. Real Rewards, Real Fun!!!</p>
         <h2>Launching Soon!</h2>
-        <form>
-            <input type="email" placeholder="Enter your email" required>
+        <form action="https://your-backend-url.up.railway.app/subscribe" method="POST">
+            <input type="email" name="email" placeholder="Enter your email" required>
+            <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
             <button type="submit">Sign up for Early Bonus!!!!</button>
         </form>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <a href="mailto:info@fun-bet.me" class="contact-btn">Contact Us</a>
         <div class="divider"></div>
         <div class="about">
