@@ -142,35 +142,38 @@
 </form>
 
 <script>
-  document.getElementById("signup-form").addEventListener("submit", async function (e) {
-    e.preventDefault();
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("signup-form").addEventListener("submit", async function (e) {
+      e.preventDefault();
 
-    const email = document.getElementById("email").value;
-    const token = grecaptcha.getResponse();
+      const email = document.getElementById("email").value;
+      const token = grecaptcha.getResponse();
 
-    if (!token) {
-      alert("Please verify you are human.");
-      return;
-    }
-
-    try {
-      const res = await fetch("https://backend-7wuy.onrender.com/verify", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, token })
-      });
-
-      if (res.ok) {
-        window.location.href = "thankyou.html";
-      } else {
-        alert("Something went wrong. Please try again.");
+      if (!token) {
+        alert("Please verify you are human.");
+        return;
       }
-    } catch (err) {
-      console.error("Error submitting form:", err);
-      alert("Failed to connect to server.");
-    }
+
+      try {
+        const res = await fetch("https://backend-7wuy.onrender.com/verify", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, token })
+        });
+
+        if (res.ok) {
+          window.location.href = "thankyou.html";
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      } catch (err) {
+        console.error("Error submitting form:", err);
+        alert("Failed to connect to server.");
+      }
+    });
   });
 </script>
+
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
