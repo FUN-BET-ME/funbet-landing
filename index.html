@@ -144,60 +144,9 @@
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("signup-form").addEventListener("submit", async function (e) {
-      e.preventDefault();
+      e.preventDefault();  // Prevent form submission reload
 
-      const email = document.getElementById("email").value;
-      const token = grecaptcha.getResponse();
-
-      if (!token) {
-        alert("Please verify you are human.");
-        return;
-      }
-
-      try {
-        const res = await fetch("https://backend-7wuy.onrender.com/verify", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, token })
-        });
-
-        if (res.ok) {
-          window.location.href = "thankyou.html";
-        } else {
-          alert("Something went wrong. Please try again.");
-        }
-      } catch (err) {
-        console.error("Error submitting form:", err);
-        alert("Failed to connect to server.");
-      }
-    });
-  });
-</script>
-
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-
-        <a href="mailto:umesh@fun-bet.me" class="contact-btn">Contact Us</a>
-        <div class="divider"></div>
-        <div class="about">
-            <p>FUN-BET.ME brings the thrill of real betting into a fun, social experience. Challenge friends, place real bets, and enjoy competitive games where skill, luck, and entertainment meet. It's gambling—made social, simple, and exciting!</p>
-        </div>
-        <footer>
-            &copy; 2025 FUN-BET.ME | All Rights Reserved<br>
-            18+ | Gamble Responsibly
-        </footer>
-    </div>
-<script>
-  // Ensure the DOM is fully loaded before attaching the event listener
-  document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("signup-form").addEventListener("submit", async function (e) {
-      // Prevent form from reloading the page
-      e.preventDefault();
-
-      // Log form submission for debugging
-      console.log("Form submitted");
-
-      // Collect email and token
+      // Collect email and reCAPTCHA token
       const email = document.getElementById("email").value;
       const token = grecaptcha.getResponse();
 
@@ -226,6 +175,19 @@
     });
   });
 </script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+        <a href="mailto:umesh@fun-bet.me" class="contact-btn">Contact Us</a>
+        <div class="divider"></div>
+        <div class="about">
+            <p>FUN-BET.ME brings the thrill of real betting into a fun, social experience. Challenge friends, place real bets, and enjoy competitive games where skill, luck, and entertainment meet. It's gambling—made social, simple, and exciting!</p>
+        </div>
+        <footer>
+            &copy; 2025 FUN-BET.ME | All Rights Reserved<br>
+            18+ | Gamble Responsibly
+        </footer>
+    </div>
+
 
 </body>
 </html>
