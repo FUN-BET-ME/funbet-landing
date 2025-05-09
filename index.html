@@ -135,19 +135,46 @@
         <p class="tagline">Your Skill. Your Game. Real Rewards, Real Fun!!!</p>
         <h2>Launching Soon ... around the World!</h2>
 
-<!-- Zoho Form Embed -->
-<div style="max-width: 600px; margin: 30px auto 10px auto; background: #0a2a25; padding: 16px 12px; border-radius: 12px; box-shadow: 0 0 14px rgba(212, 175, 55, 0.6);">
-    <iframe 
-        src="https://forms.zohopublic.eu/funbetme1/form/EarlyLaunchMembers/formperma/tMJ3oBVmU0UaH3gppMek6dQpC5H-Cj7MDPVtE3XDLbw" 
-        width="100%" 
-        height="500" 
-        frameborder="0" 
-        style="border: none; border-radius: 8px; overflow: hidden;" 
-        allowTransparency="true">
-    </iframe>
-</div>
+<form id="signup-form">
+  <input type="email" id="email" name="email" required placeholder="Enter your email">
+  <div class="g-recaptcha" data-sitekey="6LfH5y8rAAAAAEOy0Xdsg5MurXGIfaDUYirnKBlX"></div>
+  <button type="submit">Sign up Early for a €100 Bonus!!!!</button>
+</form>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("signup-form").addEventListener("submit", async function (e) {
+      e.preventDefault();  // Prevent form submission reload
 
+      // Collect email and reCAPTCHA token
+      const email = document.getElementById("email").value;
+      const token = grecaptcha.getResponse();
+
+      // Check if reCAPTCHA is not completed
+      if (!token) {
+        alert("Please verify you are human.");
+        return;
+      }
+
+      try {
+        const res = await fetch("https://backend-7wuy.onrender.com/verify", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, token })
+        });
+
+        if (res.ok) {
+          window.location.href = "thankyou.html";
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      } catch (err) {
+        console.error("Error submitting form:", err);
+        alert("Failed to connect to server.");
+      }
+    });
+  });
+</script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
         <a href="mailto:umesh@fun-bet.me" class="contact-btn">Contact Us</a>
