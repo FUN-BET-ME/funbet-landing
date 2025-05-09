@@ -133,13 +133,25 @@
         <h1>FUN-BET.ME</h1>
         <p class="tagline">Your Skill. Your Game. Real Rewards, Real Fun!!!</p>
         <h2>Launching Soon ... around the World!</h2>
-        <form action="https://backend-jhkb.onrender.com/verify" method="POST">
-            <input type="email" name="email" placeholder="Enter your email" required>
-            <div class="g-recaptcha" data-sitekey="6LfH5y8rAAAAAEOy0Xdsg5MurXGIfaDUYirnKBlX"></div>
-            <button type="submit">Sign up Early for a £100 Free Bonus!!!!</button>
-        </form>
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-        <a href="mailto:info@fun-bet.me" class="contact-btn">Contact Us</a>
+
+<form id="signup-form" onsubmit="handleSubmit(event)">
+  <input type="email" id="email" name="email" required placeholder="Enter your email">
+  <button type="submit">Sign up for Early Bonus!!!!</button>
+</form>
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();  // prevent form from submitting normally
+
+    const email = document.getElementById('email').value;
+    const encodedEmail = encodeURIComponent(email);
+
+    window.location.href = `https://backend-jhkb.onrender.com/verify?token=${encodedEmail}`;
+  }
+</script>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <a href="mailto:umesh@fun-bet.me" class="contact-btn">Contact Us</a>
         <div class="divider"></div>
         <div class="about">
             <p>FUN-BET.ME brings the thrill of real betting into a fun, social experience. Challenge friends, place real bets, and enjoy competitive games where skill, luck, and entertainment meet. It's gambling—made social, simple, and exciting!</p>
