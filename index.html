@@ -142,13 +142,20 @@
 </form>
 
 <script>
+  // Ensure the DOM is fully loaded before attaching the event listener
   document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("signup-form").addEventListener("submit", async function (e) {
+      // Prevent form from reloading the page
       e.preventDefault();
 
+      // Log form submission for debugging
+      console.log("Form submitted");
+
+      // Collect email and token
       const email = document.getElementById("email").value;
       const token = grecaptcha.getResponse();
 
+      // Check if reCAPTCHA is not completed
       if (!token) {
         alert("Please verify you are human.");
         return;
