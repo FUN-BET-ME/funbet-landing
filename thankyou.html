@@ -134,44 +134,22 @@
         <p class="tagline">Your Skill. Your Game. Real Rewards, Real Fun!!!</p>
         <h2>Launching Soon ... around the World!</h2>
 
-<form id="signup-form">
-  <input type="email" id="email" name="email" required placeholder="Enter your email">
-  <div class="g-recaptcha" data-sitekey="6LfH5y8rAAAAAEOy0Xdsg5MurXGIfaDUYirnKBlX"></div>
-  <button type="submit">Sign up Early for a €100 Bonus!!!!</button>
+<form id="signup-form" onsubmit="handleSubmit(event)">
+   <button type="submit"> Thank you for Signing up Early for a €100 Bonus!!!!</button>
 </form>
 
 <script>
-  document.getElementById("signup-form").addEventListener("submit", async function (e) {
-    e.preventDefault();
+  function handleSubmit(e) {
+    e.preventDefault();  // prevent form from submitting normally
 
-    const email = document.getElementById("email").value;
-    const token = grecaptcha.getResponse();
+    const email = document.getElementById('email').value;
+    const encodedEmail = encodeURIComponent(email);
 
-    if (!token) {
-      alert("Please verify you are human.");
-      return;
-    }
-
-    try {
-      const res = await fetch("https://backend-jhkb.onrender.com/verify", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email })
-      });
-
-      if (res.ok) {
-        window.location.href = "thankyou.html";
-      } else {
-        alert("Something went wrong. Please try again.");
-      }
-    } catch (err) {
-      console.error("Error submitting form:", err);
-      alert("Failed to connect to server.");
-    }
-  });
+    window.location.href = `https://backend-jhkb.onrender.com/verify?token=${encodedEmail}`;
+  }
 </script>
 
-
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <a href="mailto:umesh@fun-bet.me" class="contact-btn">Contact Us</a>
         <div class="divider"></div>
         <div class="about">
