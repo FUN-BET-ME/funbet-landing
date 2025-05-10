@@ -115,17 +115,31 @@
       font-size: 0.7em;
       color: #777;
     }
-    @media (max-width: 600px) {
-      .logo { width: 80%; max-width: 350px; }
-      h1 { font-size: 1.6em; }
-      p.tagline { font-size: 0.95em; }
-      h2 { font-size: 1.1em; }
-      iframe { padding: 8px; }
-      .about {
-        font-size: 0.75em;
-        line-height: 1.4;
-        padding: 0 10px;
-      }
+ @media (max-width: 600px) {
+  /* Cancel the big negative shift so the logo sits fully in view */
+  .content {
+    margin-top: 0;    /* was -80px; now 0 so it won’t cut off */
+  }
+
+  /* Make the logo a bit smaller if needed */
+  .logo {
+    width: 85%;       /* slightly wider to use available space */
+    max-width: 300px; /* cap its size for mobile */
+    margin-bottom: 12px;
+  }
+
+  /* Your other mobile tweaks */
+  h1 { font-size: 1.6em; }
+  p.tagline { font-size: 0.95em; }
+  h2 { font-size: 1.1em; }
+  iframe { height: 300px; padding: 8px; }
+  .about {
+    font-size: 0.75em;
+    line-height: 1.4;
+    padding: 0 10px;
+  }
+
+
     }
   </style>
 </head>
