@@ -1,4 +1,3 @@
-<!-- thankyou.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,24 +6,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Primary SEO -->
-  <meta name="description" content="FUN-BET.ME offers a social betting experience. Launching soon – sign up now for a €100 free bet!">
-  <meta name="keywords" content="FUN-BET.ME, social betting, free bets, online betting, competitive games">
-  <link rel="canonical" href="https://fun-bet.me/">
+  <meta name="description" content="Thank you for registering for early access to FUN-BET.ME. Stay tuned for updates and bonuses before launch!">
+  <meta name="keywords" content="FUN-BET.ME, thank you, early access, free bet">
+  <link rel="canonical" href="https://fun-bet.me/thankyou.html">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="FUN-BET.ME | Launching Soon - Sign up for €100 free bet!">
-  <meta property="og:description" content="FUN-BET.ME offers a social betting experience. Launching soon – sign up now for a €100 free bet!">
+  <meta property="og:title" content="Thank You for Registering! | FUN-BET.ME">
+  <meta property="og:description" content="Thanks for signing up for FUN-BET.ME early access. We’ll keep you posted on launch details and bonuses!">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://fun-bet.me/">
+  <meta property="og:url" content="https://fun-bet.me/thankyou.html">
   <meta property="og:image" content="https://fun-bet.me/logo.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="FUN-BET.ME | Launching Soon - Sign up for €100 free bet!">
-  <meta name="twitter:description" content="FUN-BET.ME offers a social betting experience. Launching soon – sign up now for a €100 free bet!">
+  <meta name="twitter:title" content="Thank You for Registering! | FUN-BET.ME">
+  <meta name="twitter:description" content="Thanks for signing up for FUN-BET.ME early access. We’ll keep you posted on launch details and bonuses!">
   <meta name="twitter:image" content="https://fun-bet.me/logo.png">
 
-  <!-- JSON-LD Organization -->
+  <!-- JSON-LD: Organization -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -35,7 +34,37 @@
   }
   </script>
 
-  <title>FUN-BET.ME | Launching Soon - Sign up for €100 free bet!</title>
+  <!-- JSON-LD: Sitelinks Search Box -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://fun-bet.me/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://fun-bet.me/?s={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <!-- JSON-LD: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://fun-bet.me/"
+      }
+    ]
+  }
+  </script>
+
+  <title>Thank You for Registering! | FUN-BET.ME</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -53,7 +82,7 @@
     .content {
       max-width: 900px;
       width: 100%;
-      margin-top: -80px; /* pulls up ~10–15 lines */
+      margin-top: 0;    /* no upward pull on thank you page */
     }
     .logo {
       width: 70%;
@@ -76,13 +105,6 @@
       font-size: 1.4em;
       margin: 10px 0;
     }
-    iframe {
-      border: none;
-      width: 100%;
-      max-width: 500px;
-      height: 350px;
-      margin-bottom: 15px;
-    }
     .contact-btn {
       display: inline-block;
       text-decoration: none;
@@ -92,7 +114,7 @@
       border-radius: 6px;
       font-weight: 600;
       transition: background 0.3s, color 0.3s, transform 0.3s;
-      margin-top: 20px;
+      margin: 10px 0;
       font-size: 0.85em;
     }
     .divider {
@@ -115,31 +137,22 @@
       font-size: 0.7em;
       color: #777;
     }
- @media (max-width: 600px) {
-  /* Cancel the big negative shift so the logo sits fully in view */
-  .content {
-    margin-top: 0;    /* was -80px; now 0 so it won’t cut off */
-  }
 
-  /* Make the logo a bit smaller if needed */
-  .logo {
-    width: 85%;       /* slightly wider to use available space */
-    max-width: 300px; /* cap its size for mobile */
-    margin-bottom: 12px;
-  }
-
-  /* Your other mobile tweaks */
-  h1 { font-size: 1.6em; }
-  p.tagline { font-size: 0.95em; }
-  h2 { font-size: 1.1em; }
-  iframe { height: 300px; padding: 8px; }
-  .about {
-    font-size: 0.75em;
-    line-height: 1.4;
-    padding: 0 10px;
-  }
-
-
+    @media (max-width: 600px) {
+      .content { margin-top: 0; }
+      .logo {
+        width: 85%;
+        max-width: 300px;
+        margin-bottom: 12px;
+      }
+      h1 { font-size: 1.6em; }
+      p.tagline { font-size: 0.95em; }
+      h2 { font-size: 1.1em; }
+      .about {
+        font-size: 0.75em;
+        line-height: 1.4;
+        padding: 0 10px;
+      }
     }
   </style>
 </head>
@@ -147,7 +160,7 @@
 <body>
   <div class="content">
     <a href="https://fun-bet.me">
-    <img src="logo.png" alt="FUN-BET.ME Logo" class="logo">
+      <img src="logo.png" alt="FUN-BET.ME Logo" class="logo">
     </a>
     <h1>🎉 Thank You for Registering!</h1>
     <p class="tagline">You’ve successfully signed up for early access.</p>
