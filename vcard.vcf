@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Umesh Sridhar – Fun-Bet.Me</title>
+  <style>
+    body {
+      display: flex; align-items: center; justify-content: center;
+      height: 100vh; margin: 0;
+      background: linear-gradient(135deg, #123d35, #0a2a25);
+      font-family: Montserrat, sans-serif; color: #fff;
+    }
+    .card {
+      background: rgba(0,0,0,0.3);
+      border-radius: 12px; padding: 24px; text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      max-width: 320px; width: 90%;
+    }
+    .card img.logo { max-width: 120px; margin-bottom: 16px; }
+    .card h1 { margin: 0; font-size: 1.5em; }
+    .card h2 { margin: 4px 0 16px; font-weight: 400; font-size: 1em; }
+    .card a { color: #ffd700; text-decoration: none; display: block; margin: 8px 0; }
+    .qr { margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <!-- Your logo SVG/PNG -->
+    <img class="logo" src="https://www.fun-bet.me/logo.png" alt="Fun-Bet.Me logo">
+    <h1>Umesh Sridhar</h1>
+    <h2>Owner | CEO</h2>
+    <a href="mailto:Umesh@fun-bet.me">📧 Umesh@fun-bet.me</a>
+    <a href="tel:+447974788888">📱 +44 7974 788 888</a>
+    <a href="https://www.fun-bet.me">🌐 fun-bet.me</a>
+    <a href="/vcard.vcf" download>💾 Download vCard</a>
+    <div class="qr">
+      <img
+        src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=https%3A%2F%2Fwww.fun-bet.me%2Fvcard.vcf"
+        alt="QR code: download contact"
+      >
+      <small>Scan to save contact</small>
+    </div>
+  </div>
+</body>
+</html>
