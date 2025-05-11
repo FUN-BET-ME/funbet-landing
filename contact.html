@@ -15,24 +15,49 @@
     }
     .card {
       background: rgba(0,0,0,0.35);
-      padding: 24px; border-radius: 12px;
-      max-width: 320px; width: 90%; text-align: center;
+      padding: 32px;
+      border-radius: 12px;
+      /* widened to fit larger logo */
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
     }
-    .card img.logo { max-width: 120px; margin-bottom: 16px; }
-    .card h1 { margin: 0; font-size: 1.5em; }
-    .card h2 { margin: 4px 0 16px; font-weight: 400; font-size: 1em; }
-    .card a { 
-      color: #ffd700; text-decoration: none; 
-      display: block; margin: 8px 0;
+    /* logo ~4× bigger than before */
+    .card img.logo {
+      width: 80%;
+      max-width: 400px;
+      margin-bottom: 24px;
     }
-    .qr { margin-top: 16px; }
-    .qr img { width: 160px; height: 160px; }
-    .qr small { display: block; margin-top: 4px; font-size: 0.75em; color: #ccc; }
+    .card h1 { margin: 0; font-size: 1.8em; }
+    .card h2 { margin: 6px 0 20px; font-weight: 400; font-size: 1.1em; }
+    .card a {
+      color: #ffd700;
+      text-decoration: none;
+      display: block;
+      margin: 10px 0;
+    }
+    .qr {
+      margin-top: 24px;
+    }
+    /* ensure QR renders crisply at a good size */
+    .qr img {
+      width: 200px;
+      height: 200px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+    .qr small {
+      display: block;
+      margin-top: 8px;
+      font-size: 0.8em;
+      color: #ccc;
+    }
   </style>
 </head>
 <body>
   <div class="card">
+    <!-- BIGGER LOGO -->
     <img class="logo" src="https://www.fun-bet.me/logo.png" alt="Fun-Bet.Me logo">
     <h1>Umesh Sridhar</h1>
     <h2>Owner | CEO</h2>
@@ -40,10 +65,12 @@
     <a href="tel:+447974788888">📱 +44 7974 788 888</a>
     <a href="https://www.fun-bet.me">🌐 fun-bet.me</a>
     <a href="/vcard.vcf" download>💾 Download vCard</a>
+
+    <!-- FIXED QR CODE -->
     <div class="qr">
-      <img 
-        src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=https%3A%2F%2Fwww.fun-bet.me%2Fvcard.vcf" 
-        alt="Scan to save contact">
+      <img
+        src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=https%3A%2F%2Fwww.fun-bet.me%2Fvcard.vcf"
+        alt="QR code: scan to add contact">
       <small>Scan to save contact</small>
     </div>
   </div>
