@@ -1,51 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Umesh Sridhar – Fun-Bet.Me</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
+    /* —— Borrowed straight from your index.html —— */
     body {
-      margin: 0; padding: 0;
-      display: flex; align-items: center; justify-content: center;
-      height: 100vh;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #123d35, #0a2a25);
-      font-family: Montserrat, sans-serif;
-      color: #fff;
-    }
-    .card {
-      background: rgba(0,0,0,0.35);
-      padding: 32px;
-      border-radius: 12px;
-      /* widened to fit larger logo */
-      max-width: 500px;
-      width: 90%;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      padding: 10px;
     }
-    /* logo ~4× bigger than before */
-    .card img.logo {
-      width: 80%;
-      max-width: 400px;
-      margin-bottom: 24px;
+    .content {
+      /* same “pull up” so it sits nicely */
+      max-width: 900px;
+      width: 100%;
+      margin-top: -80px; 
+      padding: 40px;
+      background: rgba(0,0,0,0.5);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
     }
-    .card h1 { margin: 0; font-size: 1.8em; }
-    .card h2 { margin: 6px 0 20px; font-weight: 400; font-size: 1.1em; }
-    .card a {
-      color: #ffd700;
-      text-decoration: none;
+    .logo {
+      /* ~4× bigger than before, but caps at your index max */
+      width: 90%;
+      max-width: 600px;
+      height: auto;
+      margin: 0 auto 20px;
+      display: block;
+    }
+    h1 {
+      font-size: 2.4em;
+      color: #d4af37;
+      margin: 8px 0;
+    }
+    .role {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
+    .links a {
       display: block;
       margin: 10px 0;
+      font-size: 1em;
+      color: #d4af37;
+      text-decoration: none;
+    }
+    .links a:hover {
+      text-decoration: underline;
     }
     .qr {
-      margin-top: 24px;
+      margin-top: 30px;
     }
-    /* ensure QR renders crisply at a good size */
     .qr img {
-      width: 200px;
-      height: 200px;
+      width: 220px;
+      height: 220px;
       border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.5);
     }
     .qr small {
       display: block;
@@ -53,26 +71,38 @@
       font-size: 0.8em;
       color: #ccc;
     }
+
+    /* mobile tweaks */
+    @media (max-width: 600px) {
+      .content { margin-top: 0; padding: 20px; }
+      .logo { max-width: 300px; margin-bottom: 16px; }
+      h1 { font-size: 1.8em; }
+      .role { font-size: 1em; }
+      .links a { font-size: 0.95em; }
+      .qr img { width: 180px; height: 180px; }
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <!-- BIGGER LOGO -->
-    <img class="logo" src="https://www.fun-bet.me/logo.png" alt="Fun-Bet.Me logo">
-    <h1>Umesh Sridhar</h1>
-    <h2>Owner | CEO</h2>
-    <a href="mailto:Umesh@fun-bet.me">📧 Umesh@fun-bet.me</a>
-    <a href="tel:+447974788888">📱 +44 7974 788 888</a>
-    <a href="https://www.fun-bet.me">🌐 fun-bet.me</a>
-    <a href="/vcard.vcf" download>💾 Download vCard</a>
 
-    <!-- FIXED QR CODE -->
-    <div class="qr">
-      <img
-        src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=https%3A%2F%2Fwww.fun-bet.me%2Fvcard.vcf"
-        alt="QR code: scan to add contact">
-      <small>Scan to save contact</small>
+  <div class="content">
+    <!-- LOGO (absolute URL ensures it always loads) -->
+    <img 
+      class="logo" 
+      src="https://fun-bet.me/logo.png" 
+      alt="FUN-BET.ME logo">
+
+    <h1>Umesh Sridhar</h1>
+    <div class="role">Owner | CEO</div>
+
+    <div class="links">
+      <a href="mailto:Umesh@fun-bet.me">📧 Umesh@fun-bet.me</a>
+      <a href="tel:+447974788888">📱 +44 7974 788 888</a>
+      <a href="https://www.fun-bet.me" target="_blank">🌐 fun-bet.me</a>
+      <a href="https://fun-bet.me/vcard.vcf" download>💾 Download vCard</a>
     </div>
-  </div>
-</body>
-</html>
+
+    <div class="qr">
+      <!-- QR code points to vCard; always loads from Google Charts API -->
+      <img
+        src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=https%3A%2F%2Ffun-bet.me
