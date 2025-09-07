@@ -2,25 +2,158 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 
-  <!-- iOS PWA -->
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="FunBet.Me" />
-  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon-180.png" />
+  <title>FunBet.Me — Making Betting Fun. Fair. Free.</title>
+  <meta name="description" content="FunBet.Me — Play for fun, get market insights, and be first to hear about promos. Launching December 2025."/>
+  <link rel="canonical" href="https://funbet.me/"/>
 
-  <!-- PWA manifest + theme -->
-  <link rel="manifest" href="/manifest.webmanifest" />
-  <meta name="theme-color" content="#2E004F" />
+  <!-- Brand -->
+  <meta name="theme-color" content="#2E004F"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 
-  <title>FunBet.Me</title>
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.webmanifest"/>
+  <!-- These icon paths are examples; keep your existing filenames if different -->
+  <link rel="icon" sizes="192x192" href="/icons/icon-192.png"/>
+  <link rel="icon" sizes="512x512" href="/icons/icon-512.png"/>
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon-180.png"/>
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="FunBet.Me — Making Betting Fun. Fair. Free."/>
+  <meta property="og:description" content="Play for free, get insights, and be first to promos. Launching Dec 2025."/>
+  <meta property="og:url" content="https://funbet.me/"/>
+  <meta property="og:image" content="/og-image.jpg"/>
+
+  <!-- Google Analytics 4 (restore your exact ID) -->
+  <!-- Replace G-XXXXXXXXXX with your real Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX'); // TODO: put your GA4 ID here
+  </script>
 
   <style>
-    :root { --fb-purple:#2E004F; }
-    * { box-sizing: border-box; }
-    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; background:#fff; color:#111; }
-    header { padding:20px 24px; border-bottom:1px solid #eee; }
-    .brand { display:flex; align-items:center; gap:12px; }
-    .logo { width
+    :root { --purple: #2E004F; --text: #ffffff; --muted: #c9b3d9; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+      background: var(--purple); color: var(--text); display: flex; align-items: center; justify-content: center;
+    }
+    .card {
+      width: min(920px, 92vw);
+      border-radius: 24px; padding: 28px 28px 32px;
+      background: rgba(255,255,255,0.06); backdrop-filter: blur(6px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+    }
+    .row { display: flex; gap: 24px; align-items: center; }
+    .row + .row { margin-top: 18px; }
+    .logo { width: 64px; height: 64px; border-radius: 16px; background: #5f2a86 url('/icons/logo-64.png') center/contain no-repeat; flex: 0 0 64px; }
+    h1 { margin: 0; font-size: clamp(24px, 4vw, 40px); line-height: 1.15; }
+    p { margin: 6px 0 0; color: var(--muted); font-size: clamp(14px, 2.2vw, 18px); }
+    .cta {
+      display: inline-flex; align-items: center; gap: 10px; margin-top: 18px;
+      padding: 12px 18px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.06); color: #fff; font-weight: 600; text-decoration: none; cursor: pointer;
+    }
+    .cta:hover { background: rgba(255,255,255,0.12); }
+    .badge { display: inline-block; padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,0.12); font-size: 12px; margin-left: 6px; }
+    footer { margin-top: 22px; font-size: 12px; color: var(--muted); }
+    code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="row">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>FunBet.Me <span class="badge">PWA Ready</span></h1>
+        <p>Your Skill. Your Game. Real Rewards. Real Win.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div style="flex:1">
+        <p>• Add to Home Screen for the best experience (iOS & Android).<br/>
+           • Allow notifications to get promos & odds boosts first.<br/>
+           • Play free, get market insights, and join our Telegram: <a href="https://t.me/funbetdotme" target="_blank" rel="noopener noreferrer" style="color:#fff;text-decoration:underline;">@funbetdotme</a>
+        </p>
+
+        <button id="enablePush" class="cta" type="button">🔔 Enable Notifications</button>
+        <button id="installBtn" class="cta" type="button" style="display:none">➕ Add to Home Screen</button>
+      </div>
+    </div>
+
+    <footer>
+      © <span id="y"></span> FunBet.Me — <a href="https://funbet.me" style="color:#fff">funbet.me</a>
+      • GA4 + OneSignal v16 • Service Worker registered: <code id="swState">checking…</code>
+    </footer>
+  </main>
+
+  <!-- OneSignal v16 SDK (keep near end, before </body>) -->
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+  <script>
+    // Footer year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // PWA: register your own SW (leave path as-is if you already have it)
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', async () => {
+        try {
+          const reg = await navigator.serviceWorker.register('/service-worker.js');
+          document.getElementById('swState').textContent = reg.active ? 'active' : (reg.installing ? 'installing' : 'registered');
+        } catch (e) {
+          document.getElementById('swState').textContent = 'failed';
+          console.error('SW register failed', e);
+        }
+      });
+    } else {
+      document.getElementById('swState').textContent = 'unsupported';
+    }
+
+    // OneSignal v16 init
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: "d79bcc6f-95e9-4a07-8957-e324baecb239", // ✅ your real appId
+        // Optionally set your domain if using subdomains:
+        // serviceWorkerParam: { scope: '/' }, // keep default scope
+        // safari_web_id: 'web.onesignal.auto.xxxxxxxx' // only if you have Safari Web Push set up
+      });
+
+      // Manual permission request (recommended)
+      const btn = document.getElementById('enablePush');
+      btn?.addEventListener('click', async () => {
+        try {
+          const p = await OneSignal.Notifications.requestPermission();
+          if (p === 'granted') btn.textContent = '✅ Notifications Enabled';
+        } catch (err) {
+          console.error('OneSignal permission error', err);
+          btn.textContent = '⚠️ Try Again';
+        }
+      });
+    });
+
+    // A2HS prompt (Android + desktop)
+    let deferredPrompt;
+    const installBtn = document.getElementById('installBtn');
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.style.display = 'inline-flex';
+    });
+    installBtn?.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      installBtn.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
