@@ -1,6 +1,9 @@
-// /service-worker.js
+// ✅ Required for OneSignal push
+importScripts("https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.sw.js");
+
+// ✅ Your own caching logic
 const CACHE = 'funbet-pwa-v1';
-const OFFLINE_URLS = ['/', '/logo.png', '/manifest.webmanifest'];
+const OFFLINE_URLS = ['/', '/logo.png', '/icons/site.webmanifest'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil((async () => {
@@ -18,7 +21,6 @@ self.addEventListener('activate', (e) => {
   })());
 });
 
-// ✅ Only handle GET requests (prevents errors that can break installability)
 self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return;
 
