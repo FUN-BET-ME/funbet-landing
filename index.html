@@ -8,12 +8,11 @@
   <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#2E004F">
 
-  <!-- iOS-specific -->
+  <!-- iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="FunBet.Me">
   <link rel="apple-touch-icon" sizes="180x180" href="/icons/maskable-192.png">
 
-  <!-- Primary SEO -->
   <title>FunBet.Me | Real Money Casino & Sportsbook – Play Small, Win Big</title>
   <meta name="description" content="Join FunBet.Me and claim your 400% Casino or 200% Sports Welcome Bonus. Real money games. Real fun. Launching October 2025.">
   <meta name="keywords" content="funbet, funbet.me, sports betting, online casino, skill games, india casino, real money games">
@@ -23,7 +22,7 @@
   <link rel="icon" href="/star_favicon.ico" type="image/x-icon">
   <link rel="shortcut icon" href="/star_favicon.ico" type="image/x-icon">
 
-  <!-- Open Graph / Facebook -->
+  <!-- Open Graph / Twitter -->
   <meta property="og:site_name" content="FunBet.Me">
   <meta property="og:title" content="FunBet.Me – 400% Casino & 200% Sports Bonus This October!">
   <meta property="og:description" content="Real money games. Real rewards. Play Small, Win Big. FunBet.Me launches October 2025.">
@@ -32,15 +31,13 @@
   <meta property="og:image" content="https://funbet.me/logo.png">
   <meta property="og:image:width" content="600">
   <meta property="og:image:height" content="600">
-
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@Fun_Bet_Me">
   <meta name="twitter:title" content="FunBet.Me – 400% Casino & 200% Sports Bonus This October!">
   <meta name="twitter:description" content="Join FunBet.Me and claim your 400% Casino or 200% Sports Welcome Bonus. Real money games. Real fun.">
   <meta name="twitter:image" content="https://funbet.me/logo.png">
 
-  <!-- Register your own SW (keep if /service-worker.js exists) -->
+  <!-- Service worker registration -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
@@ -117,17 +114,21 @@
 
 <body>
   <div class="top-buttons">
-    <a id="installBtn" href="#" role="button" style="display:none;"><i class="fas fa-download"></i> Install Android Apk</a>
-    <a href="/a2hs-instructions.html"><i class="fab fa-apple"></i> iOS Setup</a>
-  </div>
-  <!-- iOS A2HS helper (shown only on iOS Safari, not in standalone) -->
-<div id="ios-a2hs" style="display:none; margin:10px auto 0; max-width:900px;">
-  <div style="border:2px solid #d4af37; color:#d4af37; padding:10px 14px; border-radius:8px; font-weight:600; font-size:0.9em;">
-    On iPhone/iPad: open in <strong>Safari</strong>, tap <strong>Share</strong> → <strong>Add to Home Screen</strong>.
-    <a href="/a2hs-instructions.html" style="margin-left:10px; text-decoration:underline; color:#d4af37;">See steps</a>
-  </div>
-</div>
+    <!-- APK: direct file download -->
+    <a id="apkBtn" href="/download/FunBetMeBeta.apk" download>
+      <i class="fab fa-android"></i> Install APK
+    </a>
 
+    <!-- PWA install -->
+    <a id="pwaBtn" href="#" role="button">
+      <i class="fas fa-download"></i> Install App (PWA)
+    </a>
+
+    <!-- iOS instructions -->
+    <a id="iosBtn" href="/a2hs-instructions.html">
+      <i class="fab fa-apple"></i> iOS Setup (Add to Home Screen)
+    </a>
+  </div>
 
   <div class="content">
     <a href="https://funbet.me">
@@ -155,7 +156,7 @@
   </div>
 
   <!-- Tawk.to -->
-  <script type="text/javascript">
+  <script>
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
       var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
@@ -167,49 +168,32 @@
     })();
   </script>
 
-  <!-- A2HS handler (kept at bottom so DOM exists; single source of truth) -->
+  <!-- A2HS: single handler -->
   <script>
-    let deferredPrompt;
-    const installBtn = document.getElementById('installBtn');
+    let deferredPrompt = null;
+    const pwaBtn = document.getElementById('pwaBtn');
 
     window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
+      e.preventDefault();              // control the prompt
       deferredPrompt = e;
-      if (installBtn) installBtn.style.display = 'inline-block';
       console.log('beforeinstallprompt fired');
     });
 
-    if (installBtn) {
-      installBtn.addEventListener('click', async (ev) => {
-        ev.preventDefault();
-        if (!deferredPrompt) return;
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        console.log('Install outcome:', outcome);
-        deferredPrompt = null;
-        installBtn.style.display = 'none';
-      });
-    }
+    pwaBtn.addEventListener('click', async (ev) => {
+      ev.preventDefault();
+      if (!deferredPrompt) {
+        console.log('PWA prompt not available yet on this browser/view.');
+        return;
+      }
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log('Install outcome:', outcome);
+      deferredPrompt = null;           // must be reset; Chrome requires fresh event next time
+    });
 
     window.addEventListener('appinstalled', () => {
       console.log('✅ FunBet.Me installed as PWA!');
     });
   </script>
-
-  <script>
-(function () {
-  var ua = navigator.userAgent || '';
-  var isIOS = /iphone|ipad|ipod/i.test(ua);
-  // Safari-only (exclude Chrome/Edge/Firefox wrappers on iOS)
-  var isSafari = /^((?!chrome|crios|fxios|edgios|android).)*safari/i.test(ua);
-  var inStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-
-  if (isIOS && isSafari && !inStandalone) {
-    var el = document.getElementById('ios-a2hs');
-    if (el) el.style.display = 'block';
-  }
-})();
-</script>
-
 </body>
 </html>
