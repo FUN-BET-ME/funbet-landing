@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,13 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="manifest" href="/manifest.webmanifest">
-<meta name="theme-color" content="#2E004F">
+  <meta name="theme-color" content="#2E004F">
 
-<!-- iOS-specific -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="FunBet.Me">
-<link rel="apple-touch-icon" sizes="180x180" href="/icons/maskable-192.png">
-
+  <!-- iOS-specific -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="FunBet.Me">
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/maskable-192.png">
 
   <!-- Primary SEO -->
   <title>FunBet.Me | Real Money Casino & Sportsbook – Play Small, Win Big</title>
@@ -42,208 +40,72 @@
   <meta name="twitter:description" content="Join FunBet.Me and claim your 400% Casino or 200% Sports Welcome Bonus. Real money games. Real fun.">
   <meta name="twitter:image" content="https://funbet.me/logo.png">
 
+  <!-- Register your own SW (keep if /service-worker.js exists) -->
   <script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
-      .catch(console.error);
-  });
-}
-</script>
-
-  <script>
-let deferredPrompt;
-const installBtn = document.createElement('a');
-installBtn.textContent = "📲 Install FunBet.Me";
-installBtn.className = "contact-btn";
-installBtn.style.display = "none"; // hidden by default
-document.body.prepend(installBtn);
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  installBtn.style.display = "inline-block"; // show button
-
-  installBtn.addEventListener('click', async () => {
-    installBtn.style.display = "none";
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    console.log(`User response: ${outcome}`);
-    deferredPrompt = null;
-  });
-});
-
-window.addEventListener('appinstalled', () => {
-  console.log("✅ PWA installed!");
-});
-</script>
-
-
-  <script>
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;  // save it
-  // show your own “Install App” UI if you want
-});
-// then trigger: deferredPrompt.prompt();
-</script>
-
-
-  <!-- JSON-LD Organization -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "url": "https://funbet.me/",
-    "logo": "https://funbet.me/logo.png",
-    "name": "FunBet.Me"
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "url": "https://funbet.me/",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://funbet.me/?s={search_term_string}",
-      "query-input": "required name=search_term_string"
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
+          .catch(console.error);
+      });
     }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://funbet.me/"
-      }
-    ]
-  }
   </script>
 
+  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
   <style>
     body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(145deg, #60219E, #4e1a88);
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 10px;
-  position: relative;   /* ✅ Add this */
-  min-height: 100vh;    /* ✅ Ensure full height */
-}
-
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(145deg, #60219E, #4e1a88);
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 10px;
+      position: relative;
+      min-height: 100vh;
+    }
     .content {
       max-width: 900px;
       width: 100%;
       margin-top: -80px;
     }
-    .logo {
-      width: 70%;
-      max-width: 600px;
-      height: auto;
-      margin: 0 0 10px;
-    }
-    h1 {
-      font-size: 2.2em;
-      color: #d4af37;
-      margin: 8px 0;
-    }
-    p.tagline {
-      font-size: 1.1em;
-      color: #d4af37;
-      margin: 8px 0 12px;
-      font-weight: 400;
-    }
-    h2 {
-      font-size: 1.4em;
-      margin: 10px 0;
-    }
-    iframe {
-      border: none;
-      width: 100%;
-      max-width: 500px;
-      height: 350px;
-      margin-bottom: 15px;
-    }
+    .logo { width: 70%; max-width: 600px; height: auto; margin: 0 0 10px; }
+    h1 { font-size: 2.2em; color: #d4af37; margin: 8px 0; }
+    p.tagline { font-size: 1.1em; color: #d4af37; margin: 8px 0 12px; font-weight: 400; }
+    h2 { font-size: 1.4em; margin: 10px 0; }
+    iframe { border: none; width: 100%; max-width: 500px; height: 350px; margin-bottom: 15px; }
     .contact-btn {
-      display: inline-block;
-      text-decoration: none;
-      border: 2px solid #d4af37;
-      color: #d4af37;
-      padding: 8px 25px;
-      border-radius: 6px;
-      font-weight: 600;
-      transition: background 0.3s, color 0.3s, transform 0.3s;
-      margin-top: 20px;
-      font-size: 0.85em;
+      display: inline-block; text-decoration: none; border: 2px solid #d4af37; color: #d4af37;
+      padding: 8px 25px; border-radius: 6px; font-weight: 600; transition: background .3s, color .3s, transform .3s;
+      margin-top: 20px; font-size: .85em;
     }
-    .divider {
-      width: 40px;
-      height: 2px;
-      background: #d4af37;
-      margin: 15px auto;
-      border-radius: 2px;
-    }
-    .about {
-      max-width: 750px;
-      font-size: 0.85em;
-      line-height: 1.5;
-      color: #e0e0e0;
-      margin: 0 auto;
-    }
-    footer {
-      margin-top: 15px;
-      padding: 8px 0 5px;
-      font-size: 0.7em;
-      color: #777;
-    }
+    .divider { width: 40px; height: 2px; background: #d4af37; margin: 15px auto; border-radius: 2px; }
+    .about { max-width: 750px; font-size: .85em; line-height: 1.5; color: #e0e0e0; margin: 0 auto; }
+    footer { margin-top: 15px; padding: 8px 0 5px; font-size: .7em; color: #777; }
     @media (max-width: 600px) {
       .content { margin-top: 0; }
       .logo { width: 85%; max-width: 300px; margin-bottom: 12px; }
       h1 { font-size: 1.6em; }
-      p.tagline { font-size: 0.95em; }
+      p.tagline { font-size: .95em; }
       h2 { font-size: 1.1em; }
       iframe { height: 300px; padding: 8px; }
-      .about { font-size: 0.75em; line-height: 1.4; padding: 0 10px; }
+      .about { font-size: .75em; line-height: 1.4; padding: 0 10px; }
     }
     .top-buttons {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  display: flex;
-  gap: 10px;
-}
-.top-buttons a {
-  text-decoration: none;
-  border: 2px solid #d4af37;
-  color: #d4af37;
-  padding: 6px 15px;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 0.75em;
-  transition: background 0.3s, color 0.3s, transform 0.3s;
-}
-.top-buttons a:hover {
-  background: #d4af37;
-  color: #2E004F;
-  transform: scale(1.05);
-}
-
+      position: absolute; top: 15px; right: 15px; display: flex; gap: 10px;
+    }
+    .top-buttons a {
+      text-decoration: none; border: 2px solid #d4af37; color: #d4af37; padding: 6px 15px; border-radius: 6px;
+      font-weight: 600; font-size: .75em; transition: background .3s, color .3s, transform .3s;
+    }
+    .top-buttons a:hover { background: #d4af37; color: #2E004F; transform: scale(1.05); }
   </style>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KC1ZXV7H8N"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -251,23 +113,14 @@ window.addEventListener('beforeinstallprompt', (e) => {
     gtag('js', new Date());
     gtag('config', 'G-KC1ZXV7H8N');
   </script>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
 </head>
 
 <body>
-<div class="top-buttons">
-  <!-- APK always visible -->
-  <a href="/download/FunBetMeBeta.apk"><i class="fab fa-android"></i> APK</a>
-  
-  <!-- Install (shows only if supported) -->
-  <a id="installBtn" style="display:none;"><i class="fas fa-download"></i> Install App</a>
-  
-  <!-- iOS instructions always visible -->
-  <a href="/a2hs-instructions.html"><i class="fab fa-apple"></i> iOS Setup</a>
-</div>
-
+  <div class="top-buttons">
+    <a href="/download/FunBetMeBeta.apk"><i class="fab fa-android"></i> APK</a>
+    <a id="installBtn" href="#" role="button" style="display:none;"><i class="fas fa-download"></i> Install App</a>
+    <a href="/a2hs-instructions.html"><i class="fab fa-apple"></i> iOS Setup</a>
+  </div>
 
   <div class="content">
     <a href="https://funbet.me">
@@ -281,7 +134,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
     <!-- Zoho Form Embed -->
     <iframe src="https://zfrmz.eu/hXYoyr7TkXmB8fiLiVsb" title="Sign Up Form"></iframe>
 
-    <div style="height: 20px;"></div> 
+    <div style="height: 20px;"></div>
     <a href="mailto:umesh@FunBet.Me" class="contact-btn">Contact Us</a>
 
     <div class="divider"></div>
@@ -294,44 +147,46 @@ window.addEventListener('beforeinstallprompt', (e) => {
     </footer>
   </div>
 
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/684165cda46165190e586558/1isvnbarb';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
+  <!-- Tawk.to -->
+  <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+      s1.async=true;
+      s1.src='https://embed.tawk.to/684165cda46165190e586558/1isvnbarb';
+      s1.charset='UTF-8';
+      s1.setAttribute('crossorigin','*');
+      s0.parentNode.insertBefore(s1,s0);
+    })();
+  </script>
 
+  <!-- A2HS handler (kept at bottom so DOM exists; single source of truth) -->
   <script>
-let deferredPrompt;
-const installBtn = document.getElementById('installBtn');
+    let deferredPrompt;
+    const installBtn = document.getElementById('installBtn');
 
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  installBtn.style.display = 'inline-block'; // show only if supported
-});
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      if (installBtn) installBtn.style.display = 'inline-block';
+      console.log('beforeinstallprompt fired');
+    });
 
-installBtn.addEventListener('click', async () => {
-  if (!deferredPrompt) return;
-  deferredPrompt.prompt();
-  const { outcome } = await deferredPrompt.userChoice;
-  console.log(`User response: ${outcome}`);
-  deferredPrompt = null;
-  installBtn.style.display = 'none';
-});
+    if (installBtn) {
+      installBtn.addEventListener('click', async (ev) => {
+        ev.preventDefault();
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log('Install outcome:', outcome);
+        deferredPrompt = null;
+        installBtn.style.display = 'none';
+      });
+    }
 
-window.addEventListener('appinstalled', () => {
-  console.log("✅ FunBet.Me installed as PWA!");
-});
-</script>
-
-
+    window.addEventListener('appinstalled', () => {
+      console.log('✅ FunBet.Me installed as PWA!');
+    });
+  </script>
 </body>
 </html>
