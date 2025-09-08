@@ -74,16 +74,19 @@
 
   <style>
     body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(145deg, #60219E, #4e1a88);
-      color: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 10px;
-    }
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(145deg, #60219E, #4e1a88);
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  position: relative;   /* ✅ Add this */
+  min-height: 100vh;    /* ✅ Ensure full height */
+}
+
     .content {
       max-width: 900px;
       width: 100%;
