@@ -51,6 +51,16 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 
+  <script>
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;  // save it
+  // show your own “Install App” UI if you want
+});
+// then trigger: deferredPrompt.prompt();
+</script>
+
 
   <!-- JSON-LD Organization -->
   <script type="application/ld+json">
