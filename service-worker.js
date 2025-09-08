@@ -1,3 +1,4 @@
+// /service-worker.js
 const CACHE = 'funbet-pwa-v1';
 const OFFLINE_URLS = ['/', '/logo.png', '/manifest.webmanifest'];
 
@@ -17,7 +18,10 @@ self.addEventListener('activate', (e) => {
   })());
 });
 
+// ✅ Only handle GET requests (prevents errors that can break installability)
 self.addEventListener('fetch', (e) => {
+  if (e.request.method !== 'GET') return;
+
   e.respondWith((async () => {
     try {
       const net = await fetch(e.request);
