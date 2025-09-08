@@ -6,6 +6,15 @@
   <meta name="google-site-verification" content="qpjFoXSPgXGrRxwn_B3Edv-1YD57jmi2rQWZN" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#2E004F">
+
+<!-- iOS-specific -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="FunBet.Me">
+<link rel="apple-touch-icon" sizes="180x180" href="/icons/maskable-192.png">
+
+
   <!-- Primary SEO -->
   <title>FunBet.Me | Real Money Casino & Sportsbook – Play Small, Win Big</title>
   <meta name="description" content="Join FunBet.Me and claim your 400% Casino or 200% Sports Welcome Bonus. Real money games. Real fun. Launching October 2025.">
@@ -32,6 +41,16 @@
   <meta name="twitter:title" content="FunBet.Me – 400% Casino & 200% Sports Bonus This October!">
   <meta name="twitter:description" content="Join FunBet.Me and claim your 400% Casino or 200% Sports Welcome Bonus. Real money games. Real fun.">
   <meta name="twitter:image" content="https://funbet.me/logo.png">
+
+  <script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
+      .catch(console.error);
+  });
+}
+</script>
+
 
   <!-- JSON-LD Organization -->
   <script type="application/ld+json">
