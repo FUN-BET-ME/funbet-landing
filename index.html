@@ -251,13 +251,23 @@ window.addEventListener('beforeinstallprompt', (e) => {
     gtag('js', new Date());
     gtag('config', 'G-KC1ZXV7H8N');
   </script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
 
 <body>
-  <div class="top-buttons">
-  <a href="/download/FunBetMeBeta.apk">Download APK</a>
-  <a href="/a2hs-instructions.html">Add to Home Screen</a>
+<div class="top-buttons">
+  <!-- APK always visible -->
+  <a href="/download/FunBetMeBeta.apk"><i class="fab fa-android"></i> APK</a>
+  
+  <!-- Install (shows only if supported) -->
+  <a id="installBtn" style="display:none;"><i class="fas fa-download"></i> Install App</a>
+  
+  <!-- iOS instructions always visible -->
+  <a href="/a2hs-instructions.html"><i class="fab fa-apple"></i> iOS Setup</a>
 </div>
+
 
   <div class="content">
     <a href="https://funbet.me">
@@ -297,6 +307,31 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
+
+  <script>
+let deferredPrompt;
+const installBtn = document.getElementById('installBtn');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.style.display = 'inline-block'; // show only if supported
+});
+
+installBtn.addEventListener('click', async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  const { outcome } = await deferredPrompt.userChoice;
+  console.log(`User response: ${outcome}`);
+  deferredPrompt = null;
+  installBtn.style.display = 'none';
+});
+
+window.addEventListener('appinstalled', () => {
+  console.log("✅ FunBet.Me installed as PWA!");
+});
+</script>
+
 
 </body>
 </html>
