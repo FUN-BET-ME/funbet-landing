@@ -5,25 +5,21 @@
   <meta name="google-site-verification" content="qpjFoXSPgXGrRxwn_B3Edv-1YD57jmi2rQWZN" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Manifest lives in /icons -->
   <link rel="manifest" href="/icons/site.webmanifest">
-
   <meta name="theme-color" content="#2E004F">
-
-  
 
   <!-- iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="FunBet.Me">
-  
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
-
 
   <title>FunBet.Me | Real Money Casino & Sportsbook – Play Small, Win Big</title>
   <meta name="description" content="Join FunBet.Me and claim your 400% Casino or 200% Sports Welcome Bonus. Real money games. Real fun. Launching October 2025.">
   <meta name="keywords" content="funbet, funbet.me, sports betting, online casino, skill games, india casino, real money games">
   <link rel="canonical" href="https://funbet.me/">
 
-  <!-- Favicon -->
+  <!-- Favicon (legacy) -->
   <link rel="icon" href="/star_favicon.ico" type="image/x-icon">
   <link rel="shortcut icon" href="/star_favicon.ico" type="image/x-icon">
 
@@ -98,10 +94,10 @@
       .about { font-size: .75em; line-height: 1.4; padding: 0 10px; }
     }
     .top-buttons {
-      position: absolute; top: 15px; right: 15px; display: flex; gap: 10px;
+      position: absolute; top: 15px; right: 15px; display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end;
     }
     .top-buttons a {
-      text-decoration: none; border: 2px solid #d4af37; color: #d4af37; padding: 6px 15px; border-radius: 6px;
+      text-decoration: none; border: 2px solid #d4af37; color: #d4af37; padding: 6px 12px; border-radius: 6px;
       font-weight: 600; font-size: .75em; transition: background .3s, color .3s, transform .3s;
     }
     .top-buttons a:hover { background: #d4af37; color: #2E004F; transform: scale(1.05); }
@@ -132,6 +128,11 @@
     <!-- iOS instructions -->
     <a id="iosBtn" href="/a2hs-instructions.html">
       <i class="fab fa-apple"></i> iOS Setup (Add to Home Screen)
+    </a>
+
+    <!-- Enable notifications -->
+    <a id="notifBtn" href="#" role="button">
+      <i class="fas fa-bell"></i> Enable Notifications
     </a>
   </div>
 
@@ -173,7 +174,7 @@
     })();
   </script>
 
-  <!-- A2HS: single handler -->
+  <!-- A2HS: PWA install handler -->
   <script>
     let deferredPrompt = null;
     const pwaBtn = document.getElementById('pwaBtn');
@@ -199,6 +200,64 @@
     window.addEventListener('appinstalled', () => {
       console.log('✅ FunBet.Me installed as PWA!');
     });
+  </script>
+
+  <!-- OneSignal SDK + init -->
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: "YOUR-ONESIGNAL-APP-ID" // TODO: replace with your OneSignal Web App ID
+      });
+      console.log("✅ OneSignal initialized");
+      console.log("Permission:", await OneSignal.Notifications.permission);
+    });
+  </script>
+
+  <!-- Notifications button handler -->
+  <script>
+    (function () {
+      const btn = document.getElementById('notifBtn');
+      if (!btn) return;
+
+      // iOS Safari cannot subscribe; nudge to install first
+      const ua = navigator.userAgent || '';
+      const isIOS = /iphone|ipad|ipod/i.test(ua);
+      const inStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+      if (isIOS && !inStandalone) {
+        btn.innerHTML = '<i class="fas fa-bell"></i> Install App to Enable Push';
+        btn.href = '/a2hs-instructions.html';
+        btn.onclick = null; // turn into normal link
+        return;
+      }
+
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(async function(OneSignal) {
+          try {
+            if (OneSignal.Slidedown) {
+              await OneSignal.Slidedown.promptPush(); // nice UI
+            } else {
+              await OneSignal.Notifications.requestPermission(); // fallback
+            }
+            const perm = await OneSignal.Notifications.permission;
+            const userId = await OneSignal.User.getId();
+            console.log("Permission:", perm, "UserId:", userId);
+
+            if (perm === 'granted') {
+              btn.textContent = "✅ Notifications Enabled";
+              btn.style.opacity = 0.75;
+              btn.style.pointerEvents = "none";
+            }
+          } catch (err) {
+            console.error("Push enable error:", err);
+          }
+        });
+      });
+    })();
   </script>
 </body>
 </html>
