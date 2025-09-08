@@ -117,10 +117,17 @@
 
 <body>
   <div class="top-buttons">
-    <a href="/download/FunBetMeBeta.apk"><i class="fab fa-android"></i> APK</a>
-    <a id="installBtn" href="#" role="button" style="display:none;"><i class="fas fa-download"></i> Install App</a>
+    <a id="installBtn" href="#" role="button" style="display:none;"><i class="fas fa-download"></i> Install Android Apk</a>
     <a href="/a2hs-instructions.html"><i class="fab fa-apple"></i> iOS Setup</a>
   </div>
+  <!-- iOS A2HS helper (shown only on iOS Safari, not in standalone) -->
+<div id="ios-a2hs" style="display:none; margin:10px auto 0; max-width:900px;">
+  <div style="border:2px solid #d4af37; color:#d4af37; padding:10px 14px; border-radius:8px; font-weight:600; font-size:0.9em;">
+    On iPhone/iPad: open in <strong>Safari</strong>, tap <strong>Share</strong> → <strong>Add to Home Screen</strong>.
+    <a href="/a2hs-instructions.html" style="margin-left:10px; text-decoration:underline; color:#d4af37;">See steps</a>
+  </div>
+</div>
+
 
   <div class="content">
     <a href="https://funbet.me">
@@ -188,5 +195,21 @@
       console.log('✅ FunBet.Me installed as PWA!');
     });
   </script>
+
+  <script>
+(function () {
+  var ua = navigator.userAgent || '';
+  var isIOS = /iphone|ipad|ipod/i.test(ua);
+  // Safari-only (exclude Chrome/Edge/Firefox wrappers on iOS)
+  var isSafari = /^((?!chrome|crios|fxios|edgios|android).)*safari/i.test(ua);
+  var inStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+  if (isIOS && isSafari && !inStandalone) {
+    var el = document.getElementById('ios-a2hs');
+    if (el) el.style.display = 'block';
+  }
+})();
+</script>
+
 </body>
 </html>
