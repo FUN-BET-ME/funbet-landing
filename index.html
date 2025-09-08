@@ -5,22 +5,20 @@
   <meta name="google-site-verification" content="qpjFoXSPgXGrRxwn_B3Edv-1YD57jmi2rQWZN" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Manifest + theme -->
+  <!-- Keep manifest for icons/iOS, but we won't register a SW so desktop won't be installable -->
   <link rel="manifest" href="/icons/site.webmanifest" />
   <meta name="theme-color" content="#2E004F" />
 
-  <!-- iOS -->
+  <!-- iOS A2HS support -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="FunBet.Me" />
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
 
-  <!-- SEO -->
+  <!-- SEO / Social -->
   <title>FunBet.Me | Real Money Casino & Sportsbook – Play Small, Win Big</title>
   <meta name="description" content="Join FunBet.Me and claim your 400% Casino or 200% Sports Welcome Bonus. Real money games. Real fun. Launching October 2025." />
   <meta name="keywords" content="funbet, funbet.me, sports betting, online casino, skill games, india casino, real money games" />
   <link rel="canonical" href="https://funbet.me/" />
-
-  <!-- Social -->
   <meta property="og:site_name" content="FunBet.Me" />
   <meta property="og:title" content="FunBet.Me – 400% Casino & 200% Sports Bonus This October!" />
   <meta property="og:description" content="Real money games. Real rewards. Play Small, Win Big. FunBet.Me launches October 2025." />
@@ -35,7 +33,7 @@
   <meta name="twitter:description" content="Join FunBet.Me and claim your 400% Casino or 200% Sports Welcome Bonus. Real money games. Real fun." />
   <meta name="twitter:image" content="https://funbet.me/logo.png" />
 
-  <!-- Favicon (legacy) -->
+  <!-- Favicon -->
   <link rel="icon" href="/star_favicon.ico" />
   <link rel="shortcut icon" href="/star_favicon.ico" />
 
@@ -100,36 +98,27 @@
     gtag('config', 'G-KC1ZXV7H8N');
   </script>
 
-  <!-- Service worker registration -->
+  <!-- IMPORTANT: We do NOT register a service worker anymore (no desktop PWA). -->
+  <!-- One-time SW cleanup (safe to keep a few days, then remove) -->
   <script>
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
-          .catch(console.error);
-      });
+      navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
+      if (window.caches && caches.keys) {
+        caches.keys().then(keys => keys.forEach(k => { if (/^funbet-pwa-/i.test(k)) caches.delete(k); }));
+      }
     }
   </script>
 </head>
 <body>
   <div class="top-buttons">
-    <!-- APK: direct file download -->
+    <!-- ANDROID: APK download -->
     <a id="apkBtn" href="/download/FunBetMeBeta.apk" download>
       <i class="fab fa-android"></i> Install APK
     </a>
 
-    <!-- PWA install -->
-    <a id="pwaBtn" href="#" role="button">
-      <i class="fas fa-download"></i> Install Site to Desktop
-    </a>
-
-    <!-- iOS instructions -->
+    <!-- iOS: A2HS instructions -->
     <a id="iosBtn" href="/a2hs-instructions.html">
       <i class="fab fa-apple"></i> iOS Setup (Add to Home Screen)
-    </a>
-
-    <!-- Enable notifications -->
-    <a id="notifBtn" href="#" role="button">
-      <i class="fas fa-bell"></i> Enable Notifications
     </a>
   </div>
 
@@ -168,127 +157,6 @@
       s1.charset='UTF-8';
       s1.setAttribute('crossorigin','*');
       s0.parentNode.insertBefore(s1,s0);
-    })();
-  </script>
-
-  <!-- PWA install handler -->
-  <script>
-    let deferredPrompt = null;
-    const pwaBtn = document.getElementById('pwaBtn');
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      console.log('beforeinstallprompt fired');
-    });
-
-    pwaBtn.addEventListener('click', async (ev) => {
-      ev.preventDefault();
-      if (!deferredPrompt) {
-        console.log('PWA prompt not available yet on this browser/view.');
-        return;
-      }
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      console.log('Install outcome:', outcome);
-      deferredPrompt = null;
-    });
-
-    window.addEventListener('appinstalled', () => {
-      console.log('✅ FunBet.Me installed as PWA!');
-    });
-  </script>
-
-  <!-- OneSignal SDK + init (v16) -->
-  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-  <script>
-    window.OneSignalDeferred = window.OneSignalDeferred || [];
-    OneSignalDeferred.push(async function(OneSignal) {
-      await OneSignal.init({
-        appId: "97ba9f2e-50ae-44eb-86cd-2b942be0d9f3"  /* <-- your OneSignal Web App ID */
-      });
-      console.log("✅ OneSignal initialized");
-      try {
-        console.log("Permission:", await OneSignal.Notifications.permission);
-      } catch(e){ console.warn('Permission check failed (likely still initializing).'); }
-    });
-  </script>
-
-  <!-- Notifications button: robust handler -->
-  <script>
-    (function () {
-      const btn = document.getElementById('notifBtn');
-      if (!btn) return;
-
-      // iOS Safari cannot subscribe; only inside installed PWA (iOS 16.4+)
-      const ua = navigator.userAgent || '';
-      const isIOS = /iphone|ipad|ipod/i.test(ua);
-      const inStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-
-      if (isIOS && !inStandalone) {
-        btn.innerHTML = '<i class="fas fa-bell"></i> Install App to Enable Push';
-        btn.href = '/a2hs-instructions.html';
-        btn.onclick = null; // turn into normal link
-        return;
-      }
-
-      function toast(msg) {
-        console.log(msg);
-        btn.textContent = '🔔 ' + msg;
-        setTimeout(() => (btn.innerHTML = '<i class="fas fa-bell"></i> Enable Notifications'), 3000);
-      }
-
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        if (!window.OneSignalDeferred) {
-          toast('OneSignal not loaded');
-          return;
-        }
-
-        window.OneSignalDeferred.push(async function(OneSignal) {
-          try {
-            // Support check
-            const supported = await OneSignal.Notifications.isPushSupported();
-            if (!supported) {
-              toast('Push not supported in this context');
-              console.warn('Not supported: e.g., iOS Safari (not PWA), HTTP, private window, etc.');
-              return;
-            }
-
-            // Already denied?
-            const nativePerm = (window.Notification && Notification.permission) || 'unknown';
-            if (nativePerm === 'denied') {
-              toast('Permission blocked in browser settings');
-              console.warn('User denied earlier. Clear site permissions and try again.');
-              return;
-            }
-
-            // Prompt
-            if (OneSignal.Slidedown) {
-              await OneSignal.Slidedown.promptPush();
-            } else {
-              await OneSignal.Notifications.requestPermission();
-            }
-
-            // Result
-            const finalPerm = await OneSignal.Notifications.permission;
-            const userId = await OneSignal.User.getId();
-            console.log('Permission:', finalPerm, 'UserId:', userId);
-
-            if (finalPerm === 'granted' && userId) {
-              btn.textContent = '✅ Notifications Enabled';
-              btn.style.opacity = 0.75;
-              btn.style.pointerEvents = 'none';
-            } else {
-              toast('Permission not granted yet');
-            }
-          } catch (err) {
-            console.error('Push enable error:', err);
-            toast('Error enabling push (see console)');
-          }
-        });
-      });
     })();
   </script>
 </body>
