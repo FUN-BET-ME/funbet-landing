@@ -158,6 +158,29 @@
       iframe { height: 300px; padding: 8px; }
       .about { font-size: 0.75em; line-height: 1.4; padding: 0 10px; }
     }
+    .top-buttons {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  gap: 10px;
+}
+.top-buttons a {
+  text-decoration: none;
+  border: 2px solid #d4af37;
+  color: #d4af37;
+  padding: 6px 15px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.75em;
+  transition: background 0.3s, color 0.3s, transform 0.3s;
+}
+.top-buttons a:hover {
+  background: #d4af37;
+  color: #2E004F;
+  transform: scale(1.05);
+}
+
   </style>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -171,6 +194,11 @@
 </head>
 
 <body>
+  <div class="top-buttons">
+  <a href="/downloads/funbet-me.apk">Download APK</a>
+  <a href="/a2hs-instructions.html">Add to Home Screen</a>
+</div>
+
   <div class="content">
     <a href="https://funbet.me">
       <img src="logo.png" alt="FunBet.Me Logo" class="logo">
