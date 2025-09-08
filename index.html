@@ -1,56 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="google-site-verification" content="qpjFoXSPgXGrRxwn_B3Edv-1YD57jmi2rQWZN" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Manifest lives in /icons -->
-  <link rel="manifest" href="/icons/site.webmanifest">
-  <meta name="theme-color" content="#2E004F">
+  <!-- Manifest + theme -->
+  <link rel="manifest" href="/icons/site.webmanifest" />
+  <meta name="theme-color" content="#2E004F" />
 
   <!-- iOS -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="FunBet.Me">
-  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="FunBet.Me" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
 
+  <!-- SEO -->
   <title>FunBet.Me | Real Money Casino & Sportsbook – Play Small, Win Big</title>
-  <meta name="description" content="Join FunBet.Me and claim your 400% Casino or 200% Sports Welcome Bonus. Real money games. Real fun. Launching October 2025.">
-  <meta name="keywords" content="funbet, funbet.me, sports betting, online casino, skill games, india casino, real money games">
-  <link rel="canonical" href="https://funbet.me/">
+  <meta name="description" content="Join FunBet.Me and claim your 400% Casino or 200% Sports Welcome Bonus. Real money games. Real fun. Launching October 2025." />
+  <meta name="keywords" content="funbet, funbet.me, sports betting, online casino, skill games, india casino, real money games" />
+  <link rel="canonical" href="https://funbet.me/" />
+
+  <!-- Social -->
+  <meta property="og:site_name" content="FunBet.Me" />
+  <meta property="og:title" content="FunBet.Me – 400% Casino & 200% Sports Bonus This October!" />
+  <meta property="og:description" content="Real money games. Real rewards. Play Small, Win Big. FunBet.Me launches October 2025." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://funbet.me/" />
+  <meta property="og:image" content="https://funbet.me/logo.png" />
+  <meta property="og:image:width" content="600" />
+  <meta property="og:image:height" content="600" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@Fun_Bet_Me" />
+  <meta name="twitter:title" content="FunBet.Me – 400% Casino & 200% Sports Bonus This October!" />
+  <meta name="twitter:description" content="Join FunBet.Me and claim your 400% Casino or 200% Sports Welcome Bonus. Real money games. Real fun." />
+  <meta name="twitter:image" content="https://funbet.me/logo.png" />
 
   <!-- Favicon (legacy) -->
-  <link rel="icon" href="/star_favicon.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="/star_favicon.ico" type="image/x-icon">
-
-  <!-- Open Graph / Twitter -->
-  <meta property="og:site_name" content="FunBet.Me">
-  <meta property="og:title" content="FunBet.Me – 400% Casino & 200% Sports Bonus This October!">
-  <meta property="og:description" content="Real money games. Real rewards. Play Small, Win Big. FunBet.Me launches October 2025.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://funbet.me/">
-  <meta property="og:image" content="https://funbet.me/logo.png">
-  <meta property="og:image:width" content="600">
-  <meta property="og:image:height" content="600">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@Fun_Bet_Me">
-  <meta name="twitter:title" content="FunBet.Me – 400% Casino & 200% Sports Bonus This October!">
-  <meta name="twitter:description" content="Join FunBet.Me and claim your 400% Casino or 200% Sports Welcome Bonus. Real money games. Real fun.">
-  <meta name="twitter:image" content="https://funbet.me/logo.png">
-
-  <!-- Service worker registration -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
-          .catch(console.error);
-      });
-    }
-  </script>
+  <link rel="icon" href="/star_favicon.ico" />
+  <link rel="shortcut icon" href="/star_favicon.ico" />
 
   <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
   <style>
     body {
@@ -66,11 +57,7 @@
       position: relative;
       min-height: 100vh;
     }
-    .content {
-      max-width: 900px;
-      width: 100%;
-      margin-top: -80px;
-    }
+    .content { max-width: 900px; width: 100%; margin-top: -80px; }
     .logo { width: 70%; max-width: 600px; height: auto; margin: 0 0 10px; }
     h1 { font-size: 2.2em; color: #d4af37; margin: 8px 0; }
     p.tagline { font-size: 1.1em; color: #d4af37; margin: 8px 0 12px; font-weight: 400; }
@@ -99,11 +86,12 @@
     .top-buttons a {
       text-decoration: none; border: 2px solid #d4af37; color: #d4af37; padding: 6px 12px; border-radius: 6px;
       font-weight: 600; font-size: .75em; transition: background .3s, color .3s, transform .3s;
+      background: transparent;
     }
     .top-buttons a:hover { background: #d4af37; color: #2E004F; transform: scale(1.05); }
   </style>
 
-  <!-- Google Analytics -->
+  <!-- Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KC1ZXV7H8N"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -111,8 +99,17 @@
     gtag('js', new Date());
     gtag('config', 'G-KC1ZXV7H8N');
   </script>
-</head>
 
+  <!-- Service worker registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
+          .catch(console.error);
+      });
+    }
+  </script>
+</head>
 <body>
   <div class="top-buttons">
     <!-- APK: direct file download -->
@@ -138,7 +135,7 @@
 
   <div class="content">
     <a href="https://funbet.me">
-      <img src="logo.png" alt="FunBet.Me Logo" class="logo">
+      <img src="logo.png" alt="FunBet.Me Logo" class="logo" />
     </a>
 
     <h1>FunBet.Me</h1>
@@ -156,7 +153,7 @@
       <p>FunBet.Me brings the thrill of real betting into a fun, social experience. Challenge friends, place real bets, and enjoy competitive games where skill, luck, and entertainment meet. It's gambling—made social, simple, and exciting!</p>
     </div>
     <footer>
-      &copy; 2025 FunBet.Me | All Rights Reserved<br>
+      &copy; 2025 FunBet.Me | All Rights Reserved<br />
       18+ | Gamble Responsibly
     </footer>
   </div>
@@ -174,13 +171,13 @@
     })();
   </script>
 
-  <!-- A2HS: PWA install handler -->
+  <!-- PWA install handler -->
   <script>
     let deferredPrompt = null;
     const pwaBtn = document.getElementById('pwaBtn');
 
     window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();              // control the prompt
+      e.preventDefault();
       deferredPrompt = e;
       console.log('beforeinstallprompt fired');
     });
@@ -194,7 +191,7 @@
       deferredPrompt.prompt();
       const { outcome } = await deferredPrompt.userChoice;
       console.log('Install outcome:', outcome);
-      deferredPrompt = null;           // must be reset; Chrome requires fresh event next time
+      deferredPrompt = null;
     });
 
     window.addEventListener('appinstalled', () => {
@@ -202,26 +199,28 @@
     });
   </script>
 
-  <!-- OneSignal SDK + init -->
+  <!-- OneSignal SDK + init (v16) -->
   <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
   <script>
     window.OneSignalDeferred = window.OneSignalDeferred || [];
     OneSignalDeferred.push(async function(OneSignal) {
       await OneSignal.init({
-        appId: "YOUR-ONESIGNAL-APP-ID" // TODO: replace with your OneSignal Web App ID
+        appId: "97ba9f2e-50ae-44eb-86cd-2b942be0d9f3"  /* <-- your OneSignal Web App ID */
       });
       console.log("✅ OneSignal initialized");
-      console.log("Permission:", await OneSignal.Notifications.permission);
+      try {
+        console.log("Permission:", await OneSignal.Notifications.permission);
+      } catch(e){ console.warn('Permission check failed (likely still initializing).'); }
     });
   </script>
 
-  <!-- Notifications button handler -->
+  <!-- Notifications button: robust handler -->
   <script>
     (function () {
       const btn = document.getElementById('notifBtn');
       if (!btn) return;
 
-      // iOS Safari cannot subscribe; nudge to install first
+      // iOS Safari cannot subscribe; only inside installed PWA (iOS 16.4+)
       const ua = navigator.userAgent || '';
       const isIOS = /iphone|ipad|ipod/i.test(ua);
       const inStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
@@ -233,27 +232,60 @@
         return;
       }
 
+      function toast(msg) {
+        console.log(msg);
+        btn.textContent = '🔔 ' + msg;
+        setTimeout(() => (btn.innerHTML = '<i class="fas fa-bell"></i> Enable Notifications'), 3000);
+      }
+
       btn.addEventListener('click', function (e) {
         e.preventDefault();
-        window.OneSignalDeferred = window.OneSignalDeferred || [];
-        OneSignalDeferred.push(async function(OneSignal) {
-          try {
-            if (OneSignal.Slidedown) {
-              await OneSignal.Slidedown.promptPush(); // nice UI
-            } else {
-              await OneSignal.Notifications.requestPermission(); // fallback
-            }
-            const perm = await OneSignal.Notifications.permission;
-            const userId = await OneSignal.User.getId();
-            console.log("Permission:", perm, "UserId:", userId);
 
-            if (perm === 'granted') {
-              btn.textContent = "✅ Notifications Enabled";
+        if (!window.OneSignalDeferred) {
+          toast('OneSignal not loaded');
+          return;
+        }
+
+        window.OneSignalDeferred.push(async function(OneSignal) {
+          try {
+            // Support check
+            const supported = await OneSignal.Notifications.isPushSupported();
+            if (!supported) {
+              toast('Push not supported in this context');
+              console.warn('Not supported: e.g., iOS Safari (not PWA), HTTP, private window, etc.');
+              return;
+            }
+
+            // Already denied?
+            const nativePerm = (window.Notification && Notification.permission) || 'unknown';
+            if (nativePerm === 'denied') {
+              toast('Permission blocked in browser settings');
+              console.warn('User denied earlier. Clear site permissions and try again.');
+              return;
+            }
+
+            // Prompt
+            if (OneSignal.Slidedown) {
+              await OneSignal.Slidedown.promptPush();
+            } else {
+              await OneSignal.Notifications.requestPermission();
+            }
+
+            // Result
+            const finalPerm = await OneSignal.Notifications.permission;
+            const userId = await OneSignal.User.getId();
+            console.log('Permission:', finalPerm, 'UserId:', userId);
+
+            if (finalPerm === 'granted' && userId) {
+              btn.textContent = '✅ Notifications Enabled';
               btn.style.opacity = 0.75;
-              btn.style.pointerEvents = "none";
+              btn.style.pointerEvents = 'none';
+            } else {
+              toast('Permission not granted yet');
             }
           } catch (err) {
-            console.error("Push enable error:", err);
+            console.error('Push enable error:', err);
+            toast('Error enabling push (see console)');
           }
         });
       });
