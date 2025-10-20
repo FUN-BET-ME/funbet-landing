@@ -145,6 +145,33 @@
       }
     }
   </script>
+
+  <!-- OneSignal Anonymous Tracking -->
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  window.OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "dc47d986-38af-4317-ae96-6bee8249d9b3",
+      allowLocalhostAsSecureOrigin: true,
+      notifyButton: { enable: true },
+      promptOptions: {
+        actionMessage: "Get 400% Bonus Alerts & Free Spins 💰",
+        acceptButtonText: "Allow",
+        cancelButtonText: "No Thanks"
+      }
+    });
+
+    // Tag anonymous visitors by source and page
+    OneSignal.getUserId(function(playerId) {
+      console.log("Anon visitor ID:", playerId);
+      OneSignal.sendTag("source", "FunBetMain");
+      OneSignal.sendTag("page", window.location.pathname);
+    });
+  });
+</script>
+
+  
 </head>
 <body>
   <div class="top-buttons">
