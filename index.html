@@ -146,30 +146,46 @@
     }
   </script>
 
-  <!-- OneSignal Anonymous Tracking -->
-<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<!-- OneSignal Web SDK v16 for Fun-Bet-Staging -->
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
-  window.OneSignal = window.OneSignal || [];
-  OneSignal.push(function() {
-    OneSignal.init({
-      appId: "dc47d986-38af-4317-ae96-6bee8249d9b3",
-      allowLocalhostAsSecureOrigin: true,
-      notifyButton: { enable: true },
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "b3540c64-3ba9-4d80-aa67-a3796bce058a",
+      notifyButton: {
+        enable: true,
+        size: 'medium',
+        theme: 'default',
+        position: 'bottom-right',
+        text: {
+          'tip.state.unsubscribed': 'Get 400% Bonus Alerts 💰',
+          'tip.state.subscribed': 'You’re subscribed!',
+          'tip.state.blocked': 'Notifications blocked',
+        },
+      },
       promptOptions: {
-        actionMessage: "Get 400% Bonus Alerts & Free Spins 💰",
-        acceptButtonText: "Allow",
-        cancelButtonText: "No Thanks"
+        slidedown: {
+          enabled: true,
+          autoPrompt: true,
+          timeDelay: 5,
+          actionMessage: "Allow push to get ₹1000 Free Bet offers & Casino alerts 🎰",
+          acceptButtonText: "Allow",
+          cancelButtonText: "No Thanks"
+        }
       }
     });
 
-    // Tag anonymous visitors by source and page
-    OneSignal.getUserId(function(playerId) {
-      console.log("Anon visitor ID:", playerId);
-      OneSignal.sendTag("source", "FunBetMain");
-      OneSignal.sendTag("page", window.location.pathname);
-    });
+    // Tag anonymous visitors by page + source for retargeting
+    const playerId = await OneSignal.User.PushSubscription.id;
+    console.log("Anonymous visitor ID:", playerId);
+    if (playerId) {
+      OneSignal.User.addTag("source", "FunBet-Staging");
+      OneSignal.User.addTag("page", window.location.pathname);
+    }
   });
 </script>
+
 
   
 </head>
