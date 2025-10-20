@@ -106,30 +106,40 @@
     gtag('config', 'G-KC1ZXV7H8N');
   </script>
 
-  <!-- ✅ OneSignal Web SDK v16 (using OneSignal subdomain; no worker files needed) -->
-  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-  <script>
-    window.OneSignalDeferred = window.OneSignalDeferred || [];
-    OneSignalDeferred.push(async function(OneSignal) {
+  <!-- OneSignal Web Push v16 -->
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    try {
+      console.log("[OS] init start");
       await OneSignal.init({
-        appId: "b3540c64-3ba9-4d80-aa67-a3796bce058a",       // staging app id
-        subdomainName: "funbet-staging",                      // set this in OneSignal Web Push settings
+        appId: "b3540c64-3ba9-4d80-aa67-a3796bce058a",
+        serviceWorkerPath: 'OneSignalSDKWorker.js',
+        serviceWorkerUpdaterPath: 'OneSignalSDKUpdaterWorker.js',
+        serviceWorkerParam: { scope: '/' },
         promptOptions: {
-          slidedown: { enabled: true, autoPrompt: true, timeDelay: 5,
+          slidedown: {
+            enabled: true,
+            autoPrompt: true,
+            timeDelay: 5,
             actionMessage: "Allow push to get ₹1000 Free Bet & Casino alerts 🎰",
-            acceptButtonText: "Allow", cancelButtonText: "No Thanks" }
+            acceptButtonText: "Allow",
+            cancelButtonText: "No Thanks"
+          }
         },
         notifyButton: { enable: true }
       });
+      console.log("[OS] init done");
 
-      const id = await OneSignal.User.PushSubscription.id;
-      console.log("Anonymous visitor ID:", id);
-      if (id) {
-        OneSignal.User.addTag("source", "FunBet-Staging");
-        OneSignal.User.addTag("page", window.location.pathname);
-      }
-    });
-  </script>
+      const id = await OneSignal.User?.PushSubscription?.id;
+      console.log("[OS] PushSubscription.id:", id);
+    } catch (e) {
+      console.error("[OS] init error:", e);
+    }
+  });
+</script>
+
 </head>
 <body>
   <div class="top-buttons">
