@@ -106,18 +106,20 @@
     gtag('config', 'G-KC1ZXV7H8N');
   </script>
 
-  <!-- OneSignal Web Push v16 -->
+<!-- OneSignal Web Push SDK v16 -->
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(async function(OneSignal) {
+  OneSignalDeferred.push(async function (OneSignal) {
     try {
-      console.log("[OS] init start");
+      console.log("[OneSignal] Initializing...");
+
       await OneSignal.init({
         appId: "b3540c64-3ba9-4d80-aa67-a3796bce058a",
         serviceWorkerPath: 'OneSignalSDKWorker.js',
         serviceWorkerUpdaterPath: 'OneSignalSDKUpdaterWorker.js',
         serviceWorkerParam: { scope: '/' },
+        notifyButton: { enable: true },
         promptOptions: {
           slidedown: {
             enabled: true,
@@ -127,15 +129,21 @@
             acceptButtonText: "Allow",
             cancelButtonText: "No Thanks"
           }
-        },
-        notifyButton: { enable: true }
+        }
       });
-      console.log("[OS] init done");
+
+      console.log("[OneSignal] Initialization complete ✅");
 
       const id = await OneSignal.User?.PushSubscription?.id;
-      console.log("[OS] PushSubscription.id:", id);
-    } catch (e) {
-      console.error("[OS] init error:", e);
+      console.log("[OneSignal] PushSubscription ID:", id);
+
+      if (id) {
+        await OneSignal.User.addTag("source", "FunBet-Staging");
+        await OneSignal.User.addTag("page", window.location.pathname);
+        console.log("[OneSignal] Tags set successfully");
+      }
+    } catch (error) {
+      console.error("[OneSignal] Error initializing:", error);
     }
   });
 </script>
