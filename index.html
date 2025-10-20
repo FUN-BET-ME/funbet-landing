@@ -80,51 +80,21 @@
 
   <!-- Styles -->
   <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(145deg, #60219E, #4e1a88);
-      color: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 10px;
-      position: relative;
-      min-height: 100vh;
-    }
-    .content { max-width: 900px; width: 100%; margin-top: -80px; }
-    .logo { width: 70%; max-width: 600px; height: auto; margin: 0 0 10px; }
-    h1 { font-size: 2.2em; color: #d4af37; margin: 8px 0; }
-    p.tagline { font-size: 1.1em; color: #d4af37; margin: 8px 0 12px; font-weight: 400; }
-    h2 { font-size: 1.4em; margin: 10px 0; }
-    iframe { border: none; width: 100%; max-width: 500px; height: 350px; margin-bottom: 15px; }
-    .contact-btn {
-      display: inline-block; text-decoration: none; border: 2px solid #d4af37; color: #d4af37;
-      padding: 8px 25px; border-radius: 6px; font-weight: 600; transition: background .3s, color .3s, transform .3s;
-      margin-top: 20px; font-size: .85em;
-    }
-    .divider { width: 40px; height: 2px; background: #d4af37; margin: 15px auto; border-radius: 2px; }
-    .about { max-width: 750px; font-size: .85em; line-height: 1.5; color: #e0e0e0; margin: 0 auto; }
-    footer { margin-top: 15px; padding: 8px 0 5px; font-size: .7em; color: #777; }
-    @media (max-width: 600px) {
-      .content { margin-top: 0; }
-      .logo { width: 85%; max-width: 300px; margin-bottom: 12px; }
-      h1 { font-size: 1.6em; }
-      p.tagline { font-size: .95em; }
-      h2 { font-size: 1.1em; }
-      iframe { height: 300px; padding: 8px; }
-      .about { font-size: .75em; line-height: 1.4; padding: 0 10px; }
-    }
-    .top-buttons {
-      position: absolute; top: 15px; right: 15px; display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end;
-    }
-    .top-buttons a {
-      text-decoration: none; border: 2px solid #d4af37; color: #d4af37; padding: 6px 12px; border-radius: 6px;
-      font-weight: 600; font-size: .75em; transition: background .3s, color .3s, transform .3s;
-      background: transparent;
-    }
-    .top-buttons a:hover { background: #d4af37; color: #2E004F; transform: scale(1.05); }
+    body { margin:0; font-family:'Poppins',sans-serif; background:linear-gradient(145deg,#60219E,#4e1a88); color:#fff; display:flex; justify-content:center; align-items:center; text-align:center; padding:10px; position:relative; min-height:100vh; }
+    .content { max-width:900px; width:100%; margin-top:-80px; }
+    .logo { width:70%; max-width:600px; height:auto; margin:0 0 10px; }
+    h1 { font-size:2.2em; color:#d4af37; margin:8px 0; }
+    p.tagline { font-size:1.1em; color:#d4af37; margin:8px 0 12px; font-weight:400; }
+    h2 { font-size:1.4em; margin:10px 0; }
+    iframe { border:none; width:100%; max-width:500px; height:350px; margin-bottom:15px; }
+    .contact-btn { display:inline-block; text-decoration:none; border:2px solid #d4af37; color:#d4af37; padding:8px 25px; border-radius:6px; font-weight:600; transition:background .3s,color .3s,transform .3s; margin-top:20px; font-size:.85em; }
+    .divider { width:40px; height:2px; background:#d4af37; margin:15px auto; border-radius:2px; }
+    .about { max-width:750px; font-size:.85em; line-height:1.5; color:#e0e0e0; margin:0 auto; }
+    footer { margin-top:15px; padding:8px 0 5px; font-size:.7em; color:#777; }
+    @media (max-width:600px){ .content{margin-top:0;} .logo{width:85%; max-width:300px; margin-bottom:12px;} h1{font-size:1.6em;} p.tagline{font-size:.95em;} h2{font-size:1.1em;} iframe{height:300px; padding:8px;} .about{font-size:.75em; line-height:1.4; padding:0 10px;} }
+    .top-buttons { position:absolute; top:15px; right:15px; display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+    .top-buttons a { text-decoration:none; border:2px solid #d4af37; color:#d4af37; padding:6px 12px; border-radius:6px; font-weight:600; font-size:.75em; transition:background .3s,color .3s,transform .3s; background:transparent; }
+    .top-buttons a:hover { background:#d4af37; color:#2E004F; transform:scale(1.05); }
   </style>
 
   <!-- Google Analytics (GA4) -->
@@ -136,82 +106,43 @@
     gtag('config', 'G-KC1ZXV7H8N');
   </script>
 
-  <!-- One-time SW cleanup -->
+  <!-- ✅ OneSignal Web SDK v16 (using OneSignal subdomain; no worker files needed) -->
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
   <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
-      if (window.caches && caches.keys) {
-        caches.keys().then(keys => keys.forEach(k => { if (/^funbet-pwa-/i.test(k)) caches.delete(k); }));
-      }
-    }
-  </script>
-
-<!-- OneSignal Web SDK v16 for Fun-Bet-Staging -->
-<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(async function(OneSignal) {
-    await OneSignal.init({
-      appId: "b3540c64-3ba9-4d80-aa67-a3796bce058a",
-      notifyButton: {
-        enable: true,
-        size: 'medium',
-        theme: 'default',
-        position: 'bottom-right',
-        text: {
-          'tip.state.unsubscribed': 'Get 400% Bonus Alerts 💰',
-          'tip.state.subscribed': 'You’re subscribed!',
-          'tip.state.blocked': 'Notifications blocked',
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: "b3540c64-3ba9-4d80-aa67-a3796bce058a",       // staging app id
+        subdomainName: "funbet-staging",                      // set this in OneSignal Web Push settings
+        promptOptions: {
+          slidedown: { enabled: true, autoPrompt: true, timeDelay: 5,
+            actionMessage: "Allow push to get ₹1000 Free Bet & Casino alerts 🎰",
+            acceptButtonText: "Allow", cancelButtonText: "No Thanks" }
         },
-      },
-      promptOptions: {
-        slidedown: {
-          enabled: true,
-          autoPrompt: true,
-          timeDelay: 5,
-          actionMessage: "Allow push to get ₹1000 Free Bet offers & Casino alerts 🎰",
-          acceptButtonText: "Allow",
-          cancelButtonText: "No Thanks"
-        }
+        notifyButton: { enable: true }
+      });
+
+      const id = await OneSignal.User.PushSubscription.id;
+      console.log("Anonymous visitor ID:", id);
+      if (id) {
+        OneSignal.User.addTag("source", "FunBet-Staging");
+        OneSignal.User.addTag("page", window.location.pathname);
       }
     });
-
-    // Tag anonymous visitors by page + source for retargeting
-    const playerId = await OneSignal.User.PushSubscription.id;
-    console.log("Anonymous visitor ID:", playerId);
-    if (playerId) {
-      OneSignal.User.addTag("source", "FunBet-Staging");
-      OneSignal.User.addTag("page", window.location.pathname);
-    }
-  });
-</script>
-
-
-  
+  </script>
 </head>
 <body>
   <div class="top-buttons">
-    <!-- ANDROID: APK download -->
-    <a id="apkBtn" href="/download/FunBetMeBeta.apk" download>
-      <i class="fab fa-android"></i> Install APK
-    </a>
-
-    <!-- iOS: A2HS instructions -->
-    <a id="iosBtn" href="/a2hs-instructions.html">
-      <i class="fab fa-apple"></i> iOS Setup (Add to Home Screen)
-    </a>
+    <a id="apkBtn" href="/download/FunBetMeBeta.apk" download><i class="fab fa-android"></i> Install APK</a>
+    <a id="iosBtn" href="/a2hs-instructions.html"><i class="fab fa-apple"></i> iOS Setup (Add to Home Screen)</a>
   </div>
 
   <div class="content">
-    <a href="https://funbet.me">
-      <img src="logo.png" alt="FunBet.Me Logo" class="logo" width="600" height="300" />
-    </a>
-
+    <a href="https://funbet.me"><img src="logo.png" alt="FunBet.Me Logo" class="logo" width="600" height="300" /></a>
     <h1>FunBet.Me</h1>
     <p class="tagline">Your Skill. Your Game. Real Rewards, Real Fun!!!</p>
     <h2>Launching Soon – Sign up for ₹1000 Free Bet!</h2>
 
-    <!-- Zoho Form Embed -->
     <iframe src="https://zfrmz.eu/hXYoyr7TkXmB8fiLiVsb" title="Sign Up Form"></iframe>
 
     <div style="height: 20px;"></div>
@@ -221,10 +152,7 @@
     <div class="about">
       <p>FunBet.Me brings the thrill of real betting into a fun, social experience. Challenge friends, place real bets, and enjoy competitive games where skill, luck, and entertainment meet. It's gambling—made social, simple, and exciting!</p>
     </div>
-    <footer>
-      &copy; 2025 FunBet.Me | All Rights Reserved<br />
-      18+ | Gamble Responsibly
-    </footer>
+    <footer>&copy; 2025 FunBet.Me | All Rights Reserved<br />18+ | Gamble Responsibly</footer>
   </div>
 
   <!-- Tawk.to -->
@@ -232,11 +160,8 @@
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
       var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-      s1.async=true;
-      s1.src='https://embed.tawk.to/684165cda46165190e586558/1isvnbarb';
-      s1.charset='UTF-8';
-      s1.setAttribute('crossorigin','*');
-      s0.parentNode.insertBefore(s1,s0);
+      s1.async=true; s1.src='https://embed.tawk.to/684165cda46165190e586558/1isvnbarb';
+      s1.charset='UTF-8'; s1.setAttribute('crossorigin','*'); s0.parentNode.insertBefore(s1,s0);
     })();
   </script>
 </body>
